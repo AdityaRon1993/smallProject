@@ -1,0 +1,50 @@
+.drpdwn{
+    cursor: hover;
+    margin: 0;
+    border: 1px solid rgb(201, 201, 201);
+    padding: 8px 16px;
+    transition: background-color .2s ease-in-out;
+    background-color: #ffffff;
+}
+.drpdwn:hover{
+    background-color: rgb(216, 216, 216);
+}
+input{
+    margin: 0px 2px 0 0;
+}
+button{
+    margin: 0px 2px;
+}
+.mb-3{
+    cursor: pointer;
+    width: 80%;
+    
+}
+.card{
+    margin: 32px auto;
+
+}
+.main-content{
+    position: relative;
+}
+.content{
+    z-index: 22;
+    position: absolute;
+    top: 40px;
+    width: 100%;
+}
+.inp-form{
+    margin: 4px;
+    padding: 8px;
+}
+.url{
+    height: 90px;
+    padding: 16px;
+    margin: 50px 0;
+}
+.btn-success{
+    margin: 40px 0 0 0;
+}
+/* .image{
+    height: 400px;
+} */

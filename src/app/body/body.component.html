@@ -1,0 +1,73 @@
+<div class="container main-content">
+    <div class="input-group">
+        <input 
+            type="text" 
+            class="form-control" 
+            [placeholder]="place ||'Search places'" 
+            aria-label="Recipient's username with two button addons" 
+            aria-describedby="button-addon4"
+            [(ngModel)] = 'input'
+        >
+        <button class="btn btn-info" (click)='reset()'>reset</button>
+        <button class="btn btn-primary" (click)='addData()' *ngIf='!isAddData'>add data</button>
+        <button class="btn btn-danger" (click)='cancelAddData()' *ngIf='isAddData'>cancel add data</button>
+        <div class="content" *ngIf='input && input.length > 0'>
+            <p class='drpdwn' *ngFor='let ele of data | sortDate : input' (click)='onDataSelected(ele.id)'>
+                {{ele.country}}
+            </p>
+        </div>
+    </div>
+    <div *ngIf='isAddData'>
+        <div class="row row-cols-1 row-cols-md-3">
+            <div class="col mb-4">
+                <div class="card h-100">
+                    <img [src]="imageLink" class="card-img-top" alt="ele.country" *ngIf='imageLink'>
+                    <img src="https://www.solidbackgrounds.com/images/2560x1440/2560x1440-davys-grey-solid-color-background.jpg" class="card-img-top"*ngIf='!imageLink'>
+                    <div class="card-body">
+                        <h5 class="card-title"> {{title}} </h5>
+                        <p class="card-text"> {{desc}} </p>
+                        <p class="card-text"><small class="text-muted">{{title}} - tourism</small></p>
+                    </div>
+              </div>
+            </div>    
+            <div class="col mb-4">
+                <div class="card h-100">
+                    <input class="card-img-top url inp-form" placeholder="image-link" #inpImg (focusout)='imgLink(inpImg)'>
+                    <input class="card-title title inp-form" placeholder="Country Name" [(ngModel)]='title'>
+                <textarea class="card-text desc inp-form" placeholder="Description" [(ngModel)]='desc'>
+                </textarea>
+                <button class="btn btn-success" (click)="submit(inpImg.value,title,desc)">Submit</button>
+              </div>
+            </div>    
+        </div>
+
+    </div>
+    <div class="container card-container" *ngIf='selected'>
+        <div class="card mb-3" [routerLink]="['/places',idSelected]">
+            <div class="image">
+                <img [src]='selected.link'
+                class="card-img-top" [alt]="selected.country">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{selected.country}}</h5>
+              <p class="card-text">{{selected.data}}</p>
+              <p class="card-text"><small class="text-muted">{{selected.country}} - tourism</small></p>
+            </div>
+          </div>
+    </div>
+
+    <div *ngIf='!selected'>
+        <div class="row row-cols-1 row-cols-md-3">
+            <div class="col mb-4" *ngFor='let ele of data'>
+                <div class="card h-100">
+                    <img [src]="ele.link" class="card-img-top" [alt]="ele.country">
+                    <div class="card-body">
+                        <h5 class="card-title"> {{ele.country}} </h5>
+                        <p class="card-text"> {{ele.data}} </p>
+                    </div>
+              </div>
+            </div>    
+        </div>
+    </div>
+</div>
+
